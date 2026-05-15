@@ -58,7 +58,33 @@ def construirSistema(anios, porcentajes, h) :
     return A, b
 
 def eliminacion_gaussiana(A, b) :
-    return 
+    
+    #establecemos limites
+    n = len(b)
+
+    #eliminación hacia adelante
+    for i in range(n - 1) :
+
+        for j in range(i + 1, n) :
+            factor = A[j][i]/A[i][i]
+
+            for k in range(i, n) :
+                A[j][k] -= factor * A[i][k]
+
+            b[j] -= factor * b[i] 
+
+    #sustitución hacia atrás
+    x = [0]*n
+
+    for i in range(n - 1, -1, -1) :
+        x[i] = b[i]
+
+        for j in range(i + 1, n) :
+            x[i] -= A[i][j] * x[j]
+        
+        x[i] /= A[i][i]
+
+    return x
 
 def trazadorCubico() :
     return
