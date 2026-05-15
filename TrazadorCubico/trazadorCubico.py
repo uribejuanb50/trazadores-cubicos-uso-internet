@@ -27,11 +27,35 @@ def calcularH(anios) :
     for i in range(n) :
         h.append(anios[i + 1] - anios[i]) 
 
-    print(h)
     #retorna una lista de hs
     return h
-def construirSistema(anios, porcentajes, dfLimpio) :
-    return
+
+#Construye sistemas de ecuaciones lineales Ax = b
+def construirSistema(anios, porcentajes, h) :
+
+    #establece límites
+    n = len(anios)
+
+    #Construir matriz en 0s
+    A = [[0.0]*n for _ in range( n )]
+    b = [0.0]*n
+
+    #condicion de frontera natural, 0 porque se exige que en los extremos sea 0
+    A[0][0] = 1.0
+    A[n - 1][n - 1] = 1.0
+
+    #recorre los puntos internos del trazador
+    for i in range (1, n - 1) :
+        A[i][i - 1] = h[i - 1] #adigna el paso anterior a la subdiagonal
+        A[i][i] = 2*(h[i - 1] + h[i]) #Calcula el peso del nodo actual. Es el doble de la suma de los pasos izquierdo y derecho
+        A[i][i + 1] = h[i] #Asigna el valor del paso siguiente (hi) como coeficiente de la incógnita siguiente
+
+        b[i] = 6*((porcentajes[i + 1] - porcentajes[i])/h[i] - (porcentajes[i] - porcentajes[i - 1])/h[i - 1])
+
+    print(A)
+    print(b)
+
+    return A, b
 
 def eliminacion_gaussiana(A, b) :
     return 
@@ -44,4 +68,6 @@ if __name__ == "__main__" :
 
     anios, porcentajes, limpios = separarFunciones(df)
 
-    calcularH(anios)
+    h = calcularH(anios)
+
+    construirSistema(anios, porcentajes, h)
