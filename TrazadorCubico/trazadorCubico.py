@@ -60,12 +60,13 @@ def construirSistema(anios, porcentajes, h) :
 
     return A, b
 
+#devuelve M, es decir,  las segundas derivadas calculadas
 def eliminacion_gaussiana(A, b) :
     
     #establecemos limites
     n = len(b)
 
-    #eliminación hacia adelante
+    #eliminación hacia adelante (triangularización)
     for i in range(n - 1) :
 
         for j in range(i + 1, n) :
@@ -76,7 +77,7 @@ def eliminacion_gaussiana(A, b) :
 
             b[j] -= factor * b[i] 
 
-    #sustitución hacia atrás
+    #sustitución hacia atrás (despeje)
     x = [0]*n
 
     for i in range(n - 1, -1, -1) :
@@ -89,7 +90,11 @@ def eliminacion_gaussiana(A, b) :
 
     return x
 
-def trazadorCubico() :
+def trazadorCubico(anio, anios, porcentajes, h, M) :
+
+    for i in range(len(anios) - 1) :
+        if anios[i] <= anio <=
+
     return
 
 if __name__ == "__main__" :
