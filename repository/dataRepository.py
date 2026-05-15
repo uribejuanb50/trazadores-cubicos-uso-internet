@@ -19,9 +19,10 @@ def leerArchivo(nombreArchivo) :
 
         print(datosExcel)
 
-        print(f"Los datos de los años son: {datosExcel['anio'].tolist()}")
-        print(f"Los datos de los años son: {datosExcel['porcentaje'].tolist()}")
-
+        print(f"[Repository] Los datos de los años son: {datosExcel['anio'].tolist()}")
+        print(f"[Repository] Los datos de los años son: {datosExcel['porcentaje'].tolist()}")
+        
+        #Retorna los datos del excel año y porcentaje
         return datosExcel
 
     except FileNotFoundError as e:
