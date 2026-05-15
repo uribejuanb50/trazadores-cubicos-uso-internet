@@ -16,8 +16,11 @@ def separarFunciones(dataFrame) :
     anios = list(dfLimpio.iloc[:, 0].astype(int))
     porcentajes  = list(dfLimpio.iloc[:, 1].astype(float))
 
+    #evaluación de años faltantes
+    faltantes = list(dataFrame[dataFrame.iloc[:, 1].isna()].iloc[:, 0].astype(int))
+
     #retorno de los datos
-    return anios, porcentajes, dfLimpio
+    return anios, porcentajes, faltantes
 
 #calcula el espacio entre puntos
 def calcularH(anios) :
