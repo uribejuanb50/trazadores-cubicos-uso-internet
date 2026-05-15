@@ -17,6 +17,7 @@ def leerArchivo(nombreArchivo) :
 
         datosExcel  = pd.read_excel(directorioPrincipal, sheet_name = 18, header = 1)
 
+        print(f"[Repository] Datos crudos sin separar del excel : {str(nombreArchivo)}")
         print(datosExcel)
 
         print(f"[Repository] Los datos de los años son: {datosExcel['anio'].tolist()}")
