@@ -54,10 +54,6 @@ def construirSistema(anios, porcentajes, h) :
         A[i][i + 1] = h[i] #Asigna el valor del paso siguiente (hi) como coeficiente de la incógnita siguiente
 
         b[i] = 6*((porcentajes[i + 1] - porcentajes[i])/h[i] - (porcentajes[i] - porcentajes[i - 1])/h[i - 1])
-
-    print(A)
-    print(b)
-
     return A, b
 
 #devuelve M, es decir,  las segundas derivadas calculadas
@@ -92,16 +88,46 @@ def eliminacion_gaussiana(A, b) :
 
 def trazadorCubico(anio, anios, porcentajes, h, M) :
 
+    #mirar el valor de anio
     for i in range(len(anios) - 1) :
-        if anios[i] <= anio <=
 
-    return
+        if anios[i] <= anio <= anios[i + 1] :
 
-if __name__ == "__main__" :
-    df = repository.leerArchivo("datosAnios.xlsx")
+            #distancias entre puntos
 
-    anios, porcentajes, limpios = separarFunciones(df)
+            distIzquierda = anio - anios[i]
+            distDerecha = anios[i + 1] - anio
+
+            #S(t)
+            resultado = (M[i] / (6*h[i])) * distDerecha**3 
+            resultado += (M[i+1] / (6*h[i])) * distIzquierda**3
+            resultado += (porcentajes[i] / h[i] - M[i]  * h[i] / 6) * distDerecha
+            resultado +=  (porcentajes[i + 1] / h[i] - M[i + 1]  * h[i] / 6) * distIzquierda
+
+    # retornar el valor
+    return resultado
+
+def iterarListaParaBuscarDatos(nombreArchivo):
+
+    dataFrameExcel = repository.leerArchivo("datosAnios.xlsx")
+
+    anios, porcentajes, faltantes = separarFunciones(dataFrameExcel)
 
     h = calcularH(anios)
 
-    construirSistema(anios, porcentajes, h)
+    A, b = construirSistema(anios, porcentajes, h)
+
+    M = eliminacion_gaussiana(A, b)
+
+    listaFaltantes = []
+
+    for anio in faltantes :
+        listaFaltantes.append(trazadorCubico(anio, anios, porcentajes, h, M))
+
+    return listaFaltantes
+
+if __name__ == "__main__" :
+    lista = iterarListaParaBuscarDatos("datosAnios.xlsx")
+
+    for it in lista :
+        print(f"[TrazadorCubico] : {it} \n")
