@@ -19,6 +19,17 @@ def separarFunciones(dataFrame) :
     #retorno de los datos
     return anios, porcentajes, dfLimpio
 
+#calcula el espacio entre puntos
+def calcularH(anios) :
+    n = len(anios) - 1
+    h = []
+
+    for i in range(n) :
+        h.append(anios[i + 1] - anios[i]) 
+
+    print(h)
+    #retorna una lista de hs
+    return h
 def construirSistema(anios, porcentajes, dfLimpio) :
     return
 
@@ -30,4 +41,7 @@ def trazadorCubico() :
 
 if __name__ == "__main__" :
     df = repository.leerArchivo("datosAnios.xlsx")
-    separarFunciones(df)
+
+    anios, porcentajes, limpios = separarFunciones(df)
+
+    calcularH(anios)
