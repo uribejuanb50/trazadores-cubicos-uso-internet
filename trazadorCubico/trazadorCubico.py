@@ -124,7 +124,9 @@ def iterarListaParaBuscarDatos(nombreArchivo):
     for anio in faltantes :
         listaFaltantes.append(trazadorCubico(anio, anios, porcentajes, h, M))
 
-    return listaFaltantes
+    listaDefinitiva = list(map(lambda x : round(x, 5), listaFaltantes ))
+
+    return listaDefinitiva
 
 if __name__ == "__main__" :
     lista = iterarListaParaBuscarDatos("datosAnios.xlsx")
