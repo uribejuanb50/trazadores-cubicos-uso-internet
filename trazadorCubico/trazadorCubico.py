@@ -107,17 +107,8 @@ def trazadorCubico(anio, anios, porcentajes, h, M) :
     # retornar el valor
     return resultado
 
-def iterarListaParaBuscarDatos(nombreArchivo):
-
-    dataFrameExcel = repository.leerArchivo("datosAnios.xlsx")
-
-    anios, porcentajes, faltantes = separarFunciones(dataFrameExcel)
-
-    h = calcularH(anios)
-
-    A, b = construirSistema(anios, porcentajes, h)
-
-    M = eliminacion_gaussiana(A, b)
+#Va año por año en faltantes sacando su resultado pasandolo por la función trazador cúbico
+def iterarListaParaBuscarDatos(anios, porcentajes, faltantes, h, M):
 
     listaFaltantes = []
 
