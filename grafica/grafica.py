@@ -7,13 +7,13 @@ sys.path.append(str(RAIZ))
 import trazadorCubico.trazadorCubico as TrazadorCubico
 import matplotlib.pyplot as plt
 
-def graficar(anios, porcentaje, faltantes, valoresInterpolados):
+def graficar(anios, porcentajes, faltantes, valoresInterpolados):
 
     datos = {}
 
     #Combinación de conocidos y desconocidos
     for i in range(len(anios)) :
-        datos[anios[i]] = porcentaje[i]
+        datos[anios[i]] = porcentajes[i]
 
     for i in range(len(faltantes)) :
         datos[faltantes[i]] = valoresInterpolados[i]
@@ -29,7 +29,7 @@ def graficar(anios, porcentaje, faltantes, valoresInterpolados):
     plt.plot(aniosCompletos, porcentajesCompletos, '-', color = 'steelblue', label = 'Datos completos')
 
     #Puntos conocidos
-    plt.scatter(anios, porcentaje, color = 'steelblue', zorder = 5, label = 'Datos conocidos')
+    plt.scatter(anios, porcentajes, color = 'steelblue', zorder = 5, label = 'Datos conocidos')
 
     #puntos interpolados
     plt.scatter(faltantes, valoresInterpolados, marker = 'D', label = 'Datos interpolados', zorder = 6, color = 'red')
@@ -44,5 +44,5 @@ def graficar(anios, porcentaje, faltantes, valoresInterpolados):
     plt.grid(True, linestyle = '--', alpha = 0.5)
     plt.savefig("Grafica_JuanBernardoUribe", dpi = 150)
     plt.show()
-    
+
     return
