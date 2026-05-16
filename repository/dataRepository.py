@@ -19,7 +19,7 @@ def leerArchivo(nombreArchivo) :
 
         directorioPrincipal = base / "datosAnios.xlsx"
 
-        datosExcel  = pd.read_excel(directorioPrincipal, sheet_name = 18, header = 1)
+        datosExcel  = pd.read_excel(directorioPrincipal, sheet_name = 18, header = 1, engine = 'openpyxl')
 
         print(f"[Repository] Datos crudos sin separar del excel : {str(nombreArchivo)}")
         print(datosExcel)
