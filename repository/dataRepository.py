@@ -1,3 +1,5 @@
+import sys
+import os
 import pandas as pd
 from pathlib import Path
 
@@ -9,11 +11,13 @@ from pathlib import Path
 def leerArchivo(nombreArchivo) :
 
     try:
-        #indicar directorio actual
-        directorioActual = Path(__file__).parent
+        # Si corre como ejecutable PyInstaller, usa _MEIPASS
+        if getattr(sys, 'frozen', False):
+            base = Path(sys._MEIPASS)
+        else:
+            base = Path(__file__).parent.parent
 
-        #subir al nivel del directorio principal
-        directorioPrincipal = directorioActual.parent / "datosAnios.xlsx"
+        directorioPrincipal = base / "datosAnios.xlsx"
 
         datosExcel  = pd.read_excel(directorioPrincipal, sheet_name = 18, header = 1)
 
