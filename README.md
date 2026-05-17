@@ -3,3 +3,6 @@ Una muestra de lo aprendido en mi clase de análisis numérico implementado en p
 
 #Requerimiento:
 Pandas
+matplotlib
+openpyxl
+pyinstaller
