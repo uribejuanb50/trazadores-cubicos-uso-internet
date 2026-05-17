@@ -1,5 +1,6 @@
 # Interpolación Numérica: Trazadores Cúbicos para Análisis de Adopción de Internet
 
+<<<<<<< HEAD
 ## Descripción del Proyecto
 
 Este proyecto implementa un algoritmo de **interpolación numérica usando trazadores cúbicos naturales** para estimar datos faltantes en series de tiempo. Específicamente, utiliza datos de adopción de internet (porcentaje de población) en el período 1994-2023, donde faltan cinco años de información.
@@ -296,3 +297,10 @@ Este proyecto es de carácter educativo para el curso de Análisis Numérico.
 ---
 
 **Última actualización:** Mayo 21, 2026
+=======
+#Requerimiento:
+Pandas
+matplotlib
+openpyxl
+pyinstaller
+>>>>>>> 1a2940f5988b16cac6c81b861b2cde3761127e55
