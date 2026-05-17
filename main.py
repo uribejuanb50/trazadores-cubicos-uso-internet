@@ -13,6 +13,9 @@ def main() :
     M = trazador.eliminacion_gaussiana(A, b)
     valoresInterpolados = trazador.iterarListaParaBuscarDatos(anios, porcentajes, faltantes, h, M)
 
+    print(f"[trazador] años faltantes: {faltantes}")
+    print(f"[trazador] valores interpolados: {valoresInterpolados}")
+
 
     graf.graficar(anios, porcentajes, faltantes, valoresInterpolados)
     return  
